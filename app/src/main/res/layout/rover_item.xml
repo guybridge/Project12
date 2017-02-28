@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    card_view:cardCornerRadius="5dp"
+    card_view:cardElevation="3dp"
+    android:layout_margin="10dp">
+
+<RelativeLayout
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/cameraPicture"
+        android:scaleType="centerCrop"
+        android:src="@drawable/testimage"
+        android:layout_width="wrap_content"
+        android:layout_height="350dp"/>
+
+    <LinearLayout
+        android:padding="5dp"
+        android:background="@color/buttonBackground"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/cameraPicture"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+        <TextView
+            android:id="@+id/roverName"
+            android:padding="3dp"
+            android:textSize="16sp"
+            android:text="Curiousity"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+        <TextView
+            android:id="@+id/cameraName"
+            android:padding="3dp"
+            android:text="Front Hazard Avoidance Camera"
+            android:textSize="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+        <TextView
+            android:id="@+id/photoDate"
+            android:padding="3dp"
+            android:text="2015-05-30"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"/>
+
+    </LinearLayout>
+
+
+</RelativeLayout>
+</android.support.v7.widget.CardView>
