@@ -1,5 +1,6 @@
 package au.com.wsit.project12.ui;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -28,16 +29,20 @@ public class MainActivity extends AppCompatActivity
             public void onClick(View v)
             {
                 animate(v);
+                Intent earthIntent = new Intent(MainActivity.this, EarthActivity.class);
+                startActivity(earthIntent);
             }
         });
 
-        // Click listenr for starting the rover postcard maker
+        // Click listener for starting the rover postcard maker
         rover.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View v)
             {
                 animate(v);
+                Intent roverIntent = new Intent(MainActivity.this, RoverActivity.class);
+                startActivity(roverIntent);
             }
         });
 
