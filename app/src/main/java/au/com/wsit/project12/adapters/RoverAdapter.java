@@ -24,12 +24,11 @@ public class RoverAdapter extends RecyclerView.Adapter<RoverAdapter.ViewHolder>
 {
 
     private Context context;
-    private ArrayList<Rover> rovers;
+    private ArrayList<Rover> rovers = new ArrayList<>();
 
-    public RoverAdapter(Context context, ArrayList<Rover> rovers)
+    public RoverAdapter(Context context)
     {
         this.context = context;
-        this.rovers = rovers;
     }
 
     @Override
@@ -38,6 +37,15 @@ public class RoverAdapter extends RecyclerView.Adapter<RoverAdapter.ViewHolder>
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.rover_item, parent, false);
         ViewHolder viewHolder = new ViewHolder(view);
         return viewHolder;
+    }
+
+    public void swap(ArrayList<Rover> rovers)
+    {
+        if(rovers != null)
+        {
+            this.rovers = rovers;
+            notifyDataSetChanged();
+        }
     }
 
     @Override
@@ -58,14 +66,16 @@ public class RoverAdapter extends RecyclerView.Adapter<RoverAdapter.ViewHolder>
         private TextView roverName;
         private TextView cameraName;
         private TextView photoDate;
+        private TextView sol;
 
         public ViewHolder(View itemView)
         {
             super(itemView);
-            roverPhoto = (ImageView) itemView.findViewById(R.id.roverImageView);
+            roverPhoto = (ImageView) itemView.findViewById(R.id.cameraPicture);
             roverName = (TextView) itemView.findViewById(R.id.roverName);
             cameraName = (TextView) itemView.findViewById(R.id.cameraName);
             photoDate = (TextView) itemView.findViewById(R.id.photoDate);
+            sol = (TextView) itemView.findViewById(R.id.solTextView);
         }
 
         private void bindViewHolder(Rover rover)
@@ -74,6 +84,7 @@ public class RoverAdapter extends RecyclerView.Adapter<RoverAdapter.ViewHolder>
             roverName.setText(rover.getRoverName());
             cameraName.setText(rover.getCameraName());
             photoDate.setText(rover.getPhotoDate());
+            sol.setText("SOL: " + rover.getSol());
         }
     }
 }

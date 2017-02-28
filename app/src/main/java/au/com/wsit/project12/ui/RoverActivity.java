@@ -44,6 +44,7 @@ public class RoverActivity extends AppCompatActivity
         tabLayout = (TabLayout) findViewById(R.id.tabLayout);
         viewPager.setAdapter(sectionsPagerAdapter);
         tabLayout.setupWithViewPager(viewPager);
+        viewPager.setOffscreenPageLimit(3);
 
         tabLayout.getTabAt(0).setText(Constants.CURIOUSITY);
         tabLayout.getTabAt(1).setText(Constants.OPPORTUNITY);
