@@ -5,14 +5,37 @@
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="au.com.wsit.project12.ui.MainActivity">
+    tools:context="au.com.wsit.project12.ui.MainActivity"
+    android:background="@drawable/landing">
 
-    <TextView
+    <View
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_margin="20dp"
+        android:background="@color/buttonBackground"
+        android:layout_width="match_parent"
+        android:layout_height="2dp">
+    </View>
+
+    <ImageView
+        android:src="@drawable/ic_rover"
+        android:padding="15dp"
+        android:layout_marginTop="40dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="160dp"
+        android:layout_height="160dp"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/roverImageView"/>
+
+    <ImageView
+        android:src="@drawable/earth"
+        android:padding="15dp"
+        android:layout_marginBottom="35dp"
+        android:layout_gravity="center_horizontal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"/>
+        android:id="@+id/earthImageView"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"/>
+
 </RelativeLayout>
