@@ -38,7 +38,6 @@ public class Constants
     public static final String MINITES = "MINITES";
 
 
-    public static final String ERRORS = "errors";
-
-
+    // Intent keys
+    public static final String IMAGE_URL = "image_url";
 }

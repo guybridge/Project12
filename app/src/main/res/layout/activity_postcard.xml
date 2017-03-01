@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_postcard"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="au.com.wsit.project12.ui.PostcardActivity">
+
+    <ImageView
+        android:scaleType="centerCrop"
+        android:transitionName="@string/imageTransition"
+        android:id="@+id/cameraPicture"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:background="@color/buttonBackground"
+        android:padding="10dp"
+        android:layout_margin="15dp"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:padding="2dp"
+            android:text="Curiosity"
+            android:id="@+id/roverName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:textSize="22sp"
+            android:padding="2dp"
+            android:text="Front hazard avoidance"
+            android:id="@+id/cameraName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:padding="2dp"
+            android:text="24-10-2016"
+            android:id="@+id/photoDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:padding="2dp"
+            android:text="SOL: 1000"
+            android:id="@+id/solTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+
+    <ImageButton
+        android:layout_margin="5dp"
+        android:padding="15dp"
+        android:src="@mipmap/ic_action_send"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/sendButton"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"/>
+
+    <EditText
+        android:hint="FROM: "
+        android:background="@color/buttonBackground"
+        android:padding="10dp"
+        android:layout_margin="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textMultiLine"
+        android:ems="10"
+        android:layout_below="@+id/linearLayout"
+        android:id="@+id/editText"/>
+
+
+</RelativeLayout>
+

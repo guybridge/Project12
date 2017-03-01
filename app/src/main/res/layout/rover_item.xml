@@ -14,6 +14,7 @@
               android:layout_height="wrap_content">
 
     <ImageView
+        android:transitionName="@string/imageTransition"
         android:id="@+id/cameraPicture"
         android:scaleType="centerCrop"
         android:src="@drawable/testimage"

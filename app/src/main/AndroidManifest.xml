@@ -2,8 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="au.com.wsit.project12">
 
-
-    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
         android:allowBackup="true"
@@ -21,6 +20,8 @@
         <activity android:name=".ui.RoverActivity">
         </activity>
         <activity android:name=".ui.EarthActivity">
+        </activity>
+        <activity android:name=".ui.PostcardActivity">
         </activity>
     </application>
 
