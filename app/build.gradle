@@ -31,6 +31,10 @@ dependencies {
     // Picasso for image downloading
     compile 'com.squareup.picasso:picasso:2.5.2'
 
+    // FileHelper class
+    compile 'commons-io:commons-io:2.5'
+
+
     // OKHttp
     compile 'com.squareup.okhttp3:okhttp:3.6.0'
 

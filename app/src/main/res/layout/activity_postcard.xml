@@ -69,7 +69,7 @@
         android:layout_alignParentEnd="true"/>
 
     <EditText
-        android:hint="FROM: "
+        android:hint="TO: "
         android:background="@color/buttonBackground"
         android:padding="10dp"
         android:layout_margin="15dp"

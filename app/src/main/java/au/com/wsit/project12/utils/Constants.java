@@ -40,4 +40,8 @@ public class Constants
 
     // Intent keys
     public static final String IMAGE_URL = "image_url";
+
+    // FilerHelper
+    public static final int MEDIA_TYPE_IMAGE = 1;
+
 }

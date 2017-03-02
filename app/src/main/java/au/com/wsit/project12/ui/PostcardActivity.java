@@ -3,24 +3,33 @@ package au.com.wsit.project12.ui;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.support.v7.app.AppCompatActivity;
+import android.net.Uri;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+
 import au.com.wsit.project12.R;
 import au.com.wsit.project12.utils.Constants;
+import au.com.wsit.project12.utils.FileHelper;
 
 public class PostcardActivity extends Activity
 {
 
+    private static final String TAG = PostcardActivity.class.getSimpleName();
     private ImageView image;
 
     private TextView roverNameTextView;
@@ -80,11 +89,16 @@ public class PostcardActivity extends Activity
             public void onClick(View v)
             {
                 animate(v);
-                // TODO: Create Intent Chooser
-                Bitmap postcard = getBitmap(postcardLayout);
+
+                // Save the bitmap
+                Bitmap postcardBitmap = getBitmap(postcardLayout);
+                FileHelper fileHelper = new FileHelper(PostcardActivity.this);
+                File postcard = fileHelper.saveFile(postcardBitmap, "Postcard");
+
+                // Create an intent to share the file
                 Intent sendIntent = new Intent(Intent.ACTION_SEND);
-                sendIntent.setType("image/jpeg");
-                sendIntent.putExtra(Intent.EXTRA_STREAM, postcard);
+                sendIntent.setType("image/jpg");
+                sendIntent.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(postcard));
                 startActivity(Intent.createChooser(sendIntent, "Send postcard using"));
 
             }
@@ -92,15 +106,8 @@ public class PostcardActivity extends Activity
 
     }
 
-    public static Bitmap loadBitmapFromView(View v) {
-        Bitmap b = Bitmap.createBitmap(
-                v.getLayoutParams().width, v.getLayoutParams().height, Bitmap.Config.ARGB_8888);
-        Canvas c = new Canvas(b);
-        v.layout(0, 0, v.getLayoutParams().width, v.getLayoutParams().height);
-        v.draw(c);
-        return b;
-    }
 
+    // Gets a bitmap of the screen
     public Bitmap getBitmap(RelativeLayout layout)
     {
         layout.setDrawingCacheEnabled(true);
@@ -112,12 +119,8 @@ public class PostcardActivity extends Activity
 
     }
 
-    private void flattenImage(View view)
-    {
-        Bitmap b = Bitmap.createBitmap(view.getWidth(), view.getHeight(), Bitmap.Config.ARGB_8888);
-        Canvas c = new Canvas(b);
-        view.draw(c);
-    }
+
+
 
     // Animate the ImageView button clicks
     private void animate(View v)
