@@ -98,6 +98,9 @@ public class PostcardActivity extends Activity
                 // Create an intent to share the file
                 Intent sendIntent = new Intent(Intent.ACTION_SEND);
                 sendIntent.setType("image/jpg");
+                sendIntent.putExtra(Intent.EXTRA_SUBJECT, "Postcard from Mars");
+                sendIntent.putExtra(Intent.EXTRA_TEXT,
+                        "Hi, This is a postcard from the " + roverName + " rover taken on the " + date +".");
                 sendIntent.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(postcard));
                 startActivity(Intent.createChooser(sendIntent, "Send postcard using"));
 

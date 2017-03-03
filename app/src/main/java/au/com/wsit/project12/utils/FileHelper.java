@@ -1,29 +1,20 @@
 package au.com.wsit.project12.utils;
 
-import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.net.Uri;
 import android.util.Log;
 
 import java.io.File;
 import java.io.FileOutputStream;
 
 /**
- * Created by guyb on 2/03/17.
+ * Helper class to save a bitmap to a file
  */
 
 public class FileHelper
 {
     private static final String TAG = FileHelper.class.getSimpleName();
     private Context context;
-    public static final int SHORT_SIDE_TARGET = 256;
-
-    public interface SaveFileCallback
-    {
-        void onSuccess(Uri uri);
-        void onFail(String errorMessage);
-    }
 
     public FileHelper(Context context)
     {

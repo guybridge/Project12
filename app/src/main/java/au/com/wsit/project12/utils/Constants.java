@@ -10,6 +10,7 @@ public class Constants
 {
     // API key for NASA API queries
     public static final String NASA_API_KEY = "XXUAoJ0ldmmWkSAwZAvShNLC4brWAErQ6KMee5HA";
+    public static final String GOOGLE_MAPS_API_KEY = "AIzaSyC4R4RvVFJzPYbo0sRXQ3rkElWTJHhA_3k";
 
     // Rover Names
     public static final String CURIOUSITY = "Curiosity";
@@ -17,7 +18,7 @@ public class Constants
     public static final String SPIRIT = "Spirit";
     public static final String PHOTOS = "photos";
 
-    // JSON keys
+    // JSON keys for the rover
     public static final String SOL = "sol";
     public static final String CAMERA = "camera";
     public static final String FULL_NAME = "full_name";
@@ -25,6 +26,10 @@ public class Constants
     public static final String EARTH_DATE = "earth_date";
     public static final String ROVER = "rover";
     public static final String NAME = "name";
+
+    // JSON keys for earth
+    public static final String DATE = "date";
+    public static final String URL = "url";
 
     // Camera names
     public static final String FHAZ = "FHAZ";

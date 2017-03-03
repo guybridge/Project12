@@ -2,20 +2,10 @@ package au.com.wsit.project12.api;
 
 import android.util.Log;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.squareup.picasso.Downloader;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 
 import au.com.wsit.project12.json.RoverHelper;
 import au.com.wsit.project12.model.Rover;
-import au.com.wsit.project12.utils.Constants;
 import au.com.wsit.project12.utils.Generator;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -42,11 +32,11 @@ public class RoverApi
     public void getImages(final String roverName, final RoverCallback callback)
     {
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(NasaApiService.NASA_BASE_URL)
+                .baseUrl(NasaApiService.NASA_ROVER_BASE_URL)
                 .build();
 
         NasaApiService service = retrofit.create(NasaApiService.class);
-        Call<ResponseBody> call = service.getImages(roverName, Generator.getRandomSol());
+        Call<ResponseBody> call = service.getRoverImages(roverName, Generator.getRandomSol());
         Log.i(TAG, "Call: " + call.request().toString());
 
         call.enqueue(new Callback<ResponseBody>()

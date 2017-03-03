@@ -1,4 +1,6 @@
 <resources>
     <string name="app_name">NASApp</string>
     <string name="imageTransition">imageTransition</string>
+    <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyBtj7vo1hqt3CZeH6U6yy3Xw67E8Acj4ps</string>
+
 </resources>
