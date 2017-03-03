@@ -35,8 +35,10 @@ public class RoverApi
                 .baseUrl(NasaApiService.NASA_ROVER_BASE_URL)
                 .build();
 
+        final String sol = Generator.getRandomSol();
+
         NasaApiService service = retrofit.create(NasaApiService.class);
-        Call<ResponseBody> call = service.getRoverImages(roverName, Generator.getRandomSol());
+        Call<ResponseBody> call = service.getRoverImages(roverName, sol);
         Log.i(TAG, "Call: " + call.request().toString());
 
         call.enqueue(new Callback<ResponseBody>()
@@ -46,15 +48,13 @@ public class RoverApi
             {
 
                 ArrayList<Rover> roverImages = RoverHelper.parseRoverData(response);
-                if(roverImages == null)
+                if(roverImages != null)
                 {
-                    // Then try again
-                    Log.i(TAG, "Unable to get any photos");
-                    callback.onFail("Unable to get any photos");
+                    callback.onResult(roverImages);
                 }
                 else
                 {
-                    callback.onResult(roverImages);
+                    callback.onFail("No photos for sol: " + sol);
                 }
             }
 

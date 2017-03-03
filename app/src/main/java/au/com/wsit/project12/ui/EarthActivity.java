@@ -2,16 +2,15 @@ package au.com.wsit.project12.ui;
 
 
 import android.app.FragmentManager;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.ProgressBar;
-import android.widget.Toast;
+import android.widget.RelativeLayout;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -35,6 +34,7 @@ public class EarthActivity extends AppCompatActivity implements OnMapReadyCallba
     private Button zoomOut;
     private ProgressBar progressBar;
     private DatePicker datePicker;
+    private RelativeLayout relativeLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -47,6 +47,7 @@ public class EarthActivity extends AppCompatActivity implements OnMapReadyCallba
         zoomOut = (Button) findViewById(R.id.zoomOut);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
         datePicker = (DatePicker) findViewById(R.id.datePicker);
+        relativeLayout = (RelativeLayout) findViewById(R.id.activity_earth);
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
@@ -106,7 +107,7 @@ public class EarthActivity extends AppCompatActivity implements OnMapReadyCallba
 
         // Setup the Earth Api
         EarthApi earthApi = new EarthApi();
-        earthApi.getImages(latLng.latitude, latLng.longitude, "2015-01-01", new EarthApi.EarthCallback()
+        earthApi.getImages(latLng.latitude, latLng.longitude, getDate(), new EarthApi.EarthCallback()
         {
             @Override
             public void onResult(Earth earth)
@@ -130,9 +131,22 @@ public class EarthActivity extends AppCompatActivity implements OnMapReadyCallba
             {
                 // Hide the progress bar on result
                 progressBar.setVisibility(View.INVISIBLE);
-                Toast.makeText(EarthActivity.this, errorMessage, Toast.LENGTH_LONG).show();
+                Snackbar.make(relativeLayout, "No imagery for specified date", Snackbar.LENGTH_LONG).show();
             }
         });
+    }
+
+    // Get the date into a string format
+    private String getDate()
+    {
+        String day = String.valueOf(datePicker.getDayOfMonth());
+        String month = String.valueOf(datePicker.getMonth());
+        String year = String.valueOf(datePicker.getYear());
+
+        String date = year + "-" + month + "-" + day;
+        Log.i(TAG, "showing date: " + date);
+
+        return date;
     }
 
     // Animate the ImageView button clicks

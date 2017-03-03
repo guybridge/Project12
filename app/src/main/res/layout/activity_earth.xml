@@ -54,6 +54,7 @@
     </LinearLayout>
 
     <DatePicker
+        android:background="@color/dateBackground"
         android:id="@+id/datePicker"
         android:calendarViewShown="false"
         android:datePickerMode="spinner"
