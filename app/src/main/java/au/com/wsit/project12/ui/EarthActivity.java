@@ -9,6 +9,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
+import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -30,6 +33,8 @@ public class EarthActivity extends AppCompatActivity implements OnMapReadyCallba
     private GoogleMap googleMap;
     private Button zoomIn;
     private Button zoomOut;
+    private ProgressBar progressBar;
+    private DatePicker datePicker;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -40,6 +45,8 @@ public class EarthActivity extends AppCompatActivity implements OnMapReadyCallba
         // Zoom control
         zoomIn = (Button) findViewById(R.id.zoomIn);
         zoomOut = (Button) findViewById(R.id.zoomOut);
+        progressBar = (ProgressBar) findViewById(R.id.progressBar);
+        datePicker = (DatePicker) findViewById(R.id.datePicker);
 
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
@@ -80,6 +87,7 @@ public class EarthActivity extends AppCompatActivity implements OnMapReadyCallba
             @Override
             public void onMapClick(LatLng latLng)
             {
+
                 // Add the markers
                 MarkerOptions options = new MarkerOptions();
                 options.title(latLng.toString()).position(latLng);
@@ -93,12 +101,20 @@ public class EarthActivity extends AppCompatActivity implements OnMapReadyCallba
     // Query the API for the image
     private void showImage(LatLng latLng)
     {
+        // Show loading
+        progressBar.setVisibility(View.VISIBLE);
+
+        // Setup the Earth Api
         EarthApi earthApi = new EarthApi();
         earthApi.getImages(latLng.latitude, latLng.longitude, "2015-01-01", new EarthApi.EarthCallback()
         {
             @Override
             public void onResult(Earth earth)
             {
+                // Hide the progress bar on result
+                progressBar.setVisibility(View.INVISIBLE);
+
+                // Show image fragment
                 Log.i(TAG, "image: " + earth.getImageUrl());
                 FragmentManager fragmentManager = getFragmentManager();
                 ShowImage showImage = new ShowImage();
@@ -112,7 +128,9 @@ public class EarthActivity extends AppCompatActivity implements OnMapReadyCallba
             @Override
             public void onFail(String errorMessage)
             {
-
+                // Hide the progress bar on result
+                progressBar.setVisibility(View.INVISIBLE);
+                Toast.makeText(EarthActivity.this, errorMessage, Toast.LENGTH_LONG).show();
             }
         });
     }
@@ -123,25 +141,5 @@ public class EarthActivity extends AppCompatActivity implements OnMapReadyCallba
         v.setScaleY(0);
         v.setScaleX(0);
         v.animate().scaleX(1).scaleY(1).start();
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu)
-    {
-        getMenuInflater().inflate(R.menu.menu_earth, menu);
-        return super.onCreateOptionsMenu(menu);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item)
-    {
-        int id = item.getItemId();
-        switch (id)
-        {
-            case R.id.action_show:
-                // show images
-                break;
-        }
-        return super.onOptionsItemSelected(item);
     }
 }
