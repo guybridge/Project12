@@ -2,6 +2,8 @@ package au.com.wsit.project12.ui;
 
 
 import android.app.FragmentManager;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -12,6 +14,8 @@ import android.widget.DatePicker;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 
+import com.github.amlcurran.showcaseview.ShowcaseView;
+import com.github.amlcurran.showcaseview.targets.ViewTarget;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -74,6 +78,9 @@ public class EarthActivity extends AppCompatActivity implements OnMapReadyCallba
 
             }
         });
+
+        // showcase the features
+        showcase();
 
     }
 
@@ -147,6 +154,24 @@ public class EarthActivity extends AppCompatActivity implements OnMapReadyCallba
         Log.i(TAG, "showing date: " + date);
 
         return date;
+    }
+
+    private void showcase()
+    {
+        SharedPreferences sharedPreferences = getSharedPreferences(Constants.PREFERENCES_FILE, Context.MODE_PRIVATE);
+        boolean shouldShowcase = sharedPreferences.getBoolean(Constants.SHOWCASE_EARTH, true);
+
+        if(shouldShowcase)
+        {
+            new ShowcaseView.Builder(this)
+                    .setTarget(new ViewTarget(R.id.datePicker, this))
+                    .setContentTitle("Choose a date")
+                    .setContentText("Zoom around and selection a position on the map to see the image")
+                    .hideOnTouchOutside()
+                    .build();
+
+            sharedPreferences.edit().putBoolean(Constants.SHOWCASE_EARTH, false).apply();
+        }
     }
 
     // Animate the ImageView button clicks

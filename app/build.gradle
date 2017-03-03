@@ -45,6 +45,10 @@ dependencies {
     compile 'com.squareup.retrofit2:converter-gson:2.1.0'
     compile 'com.google.code.gson:gson:2.7'
 
+    // Showcase View
+    compile 'com.github.amlcurran.showcaseview:library:5.4.3'
+
+
     // Test compile
     testCompile 'junit:junit:4.12'
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {

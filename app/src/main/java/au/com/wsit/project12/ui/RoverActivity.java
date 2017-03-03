@@ -1,5 +1,7 @@
 package au.com.wsit.project12.ui;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -9,7 +11,12 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.widget.TableLayout;
+
+import com.github.amlcurran.showcaseview.OnShowcaseEventListener;
+import com.github.amlcurran.showcaseview.ShowcaseView;
+import com.github.amlcurran.showcaseview.targets.ViewTarget;
 
 import au.com.wsit.project12.R;
 import au.com.wsit.project12.adapters.SectionsPagerAdapter;
@@ -23,6 +30,7 @@ public class RoverActivity extends AppCompatActivity
     private TabLayout tabLayout;
     private SectionsPagerAdapter sectionsPagerAdapter;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -32,6 +40,9 @@ public class RoverActivity extends AppCompatActivity
 
         // UI Setup
         setupUI();
+
+        // Showcase
+        showcase();
 
     }
 
@@ -50,4 +61,26 @@ public class RoverActivity extends AppCompatActivity
         tabLayout.getTabAt(1).setText(Constants.OPPORTUNITY);
         tabLayout.getTabAt(2).setText(Constants.SPIRIT);
     }
+
+    private void showcase()
+    {
+
+        SharedPreferences sharedPreferences = getSharedPreferences(Constants.PREFERENCES_FILE, Context.MODE_PRIVATE);
+        boolean shouldShowcase = sharedPreferences.getBoolean(Constants.SHOWCASE_ROVER, true);
+
+        if(shouldShowcase)
+        {
+            new ShowcaseView.Builder(this)
+                    .setTarget(new ViewTarget(R.id.tabLayout, this))
+                    .setContentTitle("Select a rover image")
+                    .setContentText("Scroll through the rover images, select one you like to send it as a postcard.")
+                    .hideOnTouchOutside()
+                    .build();
+
+            sharedPreferences.edit().putBoolean(Constants.SHOWCASE_ROVER, false).apply();
+        }
+
+    }
+
+
 }

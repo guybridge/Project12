@@ -49,4 +49,8 @@ public class Constants
     // FilerHelper
     public static final int MEDIA_TYPE_IMAGE = 1;
 
+    public static final String PREFERENCES_FILE = "preferences_file";
+    public static final String SHOWCASE = "showcase_main";
+    public static final String SHOWCASE_ROVER = "showcase_rover";
+    public static final String SHOWCASE_EARTH = "showcase_earth";
 }
