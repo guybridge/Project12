@@ -37,6 +37,7 @@ public class RoverActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rover);
         getSupportActionBar().setElevation(0);
+        getSupportActionBar().setTitle("Postcard Maker");
 
         // UI Setup
         setupUI();

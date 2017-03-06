@@ -39,7 +39,6 @@ public class RoverApi
 
         NasaApiService service = retrofit.create(NasaApiService.class);
         Call<ResponseBody> call = service.getRoverImages(roverName, sol);
-        Log.i(TAG, "Call: " + call.request().toString());
 
         call.enqueue(new Callback<ResponseBody>()
         {

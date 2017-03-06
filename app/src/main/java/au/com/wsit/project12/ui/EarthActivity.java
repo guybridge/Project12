@@ -46,6 +46,8 @@ public class EarthActivity extends AppCompatActivity implements OnMapReadyCallba
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_earth);
 
+        getSupportActionBar().setTitle(R.string.eyeInTheSky);
+
         // Zoom control
         zoomIn = (Button) findViewById(R.id.zoomIn);
         zoomOut = (Button) findViewById(R.id.zoomOut);

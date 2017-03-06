@@ -36,8 +36,6 @@ public class EarthApi
         NasaApiService service = retrofit.create(NasaApiService.class);
         Call<ResponseBody> call = service.getEarthImages(String.valueOf(latitude), String.valueOf(longitude), date);
 
-        Log.i(TAG, "Call: " + call.request().toString());
-
         call.enqueue(new Callback<ResponseBody>()
         {
             @Override
